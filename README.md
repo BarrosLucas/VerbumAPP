@@ -40,11 +40,17 @@ c) camada que lida com a persistência/comunicação externa/etc (infra).
 
 3. Armazene os usuários numa coleção (deve ser atributo da classe que gerencia os usuários na camada “control”) e implemente a persistencia da lista utilizando arquivos binários na camada “infra”.
 
-4. Implementar "LISTAR TODO OS USUÁRIOS" exibindo login e senha;
+4. Implementação "LISTAR TODO OS USUÁRIOS" exibindo login e senha ;
 
-5. Implemente a EXCLUSÃO DE UM USUÁRIO dado seu login.
+5. Implementação a EXCLUSÃO DE UM USUÁRIO dado seu login.
 
 :iphone: O apk para testes também se encontra na pasta. :iphone:
+
+## Telas/Funcionalidades :white_check_mark:
+- Tela Login - Informe o nome do usuário JÁ CADASTRADO e senha;
+- Tela Cadastro - Preencha os campos: nome, usuário, sexo, senha, e data de nascimento clicando em NÃO TENHO CONTA na tela de login;
+- Para visualizar os usuários cadastrados clique em :gear: no canto superior direito da tela;
+- Para excluir um usuário clique no mesmo e deslise para esquerda.
 
 ### Para rodar os códigos é necessário: :gear:
 1. Baixar/clonar o projeto;
