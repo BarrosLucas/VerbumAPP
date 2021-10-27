@@ -8,13 +8,13 @@ Este repositório conta um documento de requisitos do aplicativo que pode ser co
 
 :open_file_folder: Batalha de Grupos(entrega 3), que contém um controle de versão em que os participantes do projeto desenpenharam as seguintes funções:
 
-####Integrantes e seus respectivos papéis
+#### Integrantes e seus respectivos papéis
 - __Lucas Barros__: Mantenedor do repositório GIT
 - __Rebeca Raab__: Colaborador A1
 - __Júlio Leite__: Colaborador A2
 - __Everaldo Mendes__: Colaborador B1
 
-####Fazendo as seguintes tarefas:
+#### Fazendo as seguintes tarefas:
 1. O mantenedor1 cria um repositório no Github e colocar no readme os papéis do grupo.
 2. O mantenedor1 adiciona 2 commits e pushes.
 3. Contribuidores A e Contribuidores B fork e clonam (e adicionam upstream).
@@ -46,7 +46,7 @@ c) camada que lida com a persistência/comunicação externa/etc (infra).
 
 :iphone: O apk para testes também se encontra na pasta. :iphone:
 
-###Para rodar os códigos é necessário: :gear:
+### Para rodar os códigos é necessário: :gear:
 1. Baixar/clonar o projeto;
 2. Abrir o terminal;
 3. Executar o comando: ./gradlew assembleRelease
