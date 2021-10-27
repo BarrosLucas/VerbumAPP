@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Verbum</string>
+    <string name="descricao_login">Encontre as melhores referências bibliográficas com facilidade. Um aplicativo que liga estudantes, professores e curiosos por conhecimento.</string>
+    <string name="user">Usuário</string>
+    <string name="pass">Senha</string>
+    <string name="forgot_pass">Esqueceu sua senha?</string>
+    <string name="dont_have_pass">Não possui uma conta?</string>
+    <string name="login">Login</string>
 </resources>
