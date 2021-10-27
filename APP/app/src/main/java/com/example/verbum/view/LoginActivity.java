@@ -34,7 +34,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 User u = controller.login();
                 if(u != null){
-                    //Chama tela home
+                    Intent i = new Intent(getBaseContext(),HomeActivity.class);
+                    i.putExtra("USER",u);
+                    finish();
+                    startActivity(i);
                 }else{
                     Dialog.showDialog("Login","Seus dados estão inconsistentes!",context);
                 }
@@ -45,7 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Chama tela de configurações
+                Intent intent = new Intent(getBaseContext(),SettingsActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -53,7 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Chama tela de cadastr
+                Intent intent = new Intent(getBaseContext(), RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
