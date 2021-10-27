@@ -6,4 +6,17 @@
     <string name="forgot_pass">Esqueceu sua senha?</string>
     <string name="dont_have_pass">Não possui uma conta?</string>
     <string name="login">Login</string>
+    <string name="name">Nome</string>
+    <string name="pass_confirm">Confirmar Senha</string>
+    <string name="birth_date">Nascimento</string>
+    <string name="sex">Sexo</string>
+    <string name="facebook">Cadastrar com Facebook</string>
+    <string name="gmail">Cadastrar com Google</string>
+    <string name="register_now">Cadastrar Agora</string>
+    <string name="need_an_account">Precisa de uma conta?</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="nothing_to_show">Não foi encontrado nenhum\ncadastro</string>
+    <string name="welcome">Bem-vindo</string>
 </resources>
