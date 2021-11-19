@@ -1,6 +1,9 @@
 package com.example.verbum.business.model;
 
-public class Date {
+import java.io.Serializable;
+
+public class Date  implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int day;
     private int month;
     private int year;

@@ -1,5 +1,6 @@
 package com.example.verbum.view.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,11 @@ public class UserItemAdapter extends RecyclerView.Adapter<UserItemAdapter.UserVi
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         holder.username.setText(users.get(position).getUsername());
         holder.password.setText(users.get(position).getBirthDate().toString());
+        try{
+            Log.i("UAAAAI","user: "+users.get(position).getUsername()+"\n\t"+users.get(position).getBirthDate());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

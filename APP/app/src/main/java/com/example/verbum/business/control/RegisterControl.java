@@ -19,6 +19,7 @@ public class RegisterControl {
     private Context context;
 
     public RegisterControl(Context context) {
+        this.context = context;
     }
 
 

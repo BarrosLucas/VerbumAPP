@@ -8,6 +8,7 @@ import com.example.verbum.business.model.User;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -39,17 +40,27 @@ public class UserPersistence {
 
     }
 
-    public ArrayList<User> load(Context context) throws IOException, ClassNotFoundException {
+    public ArrayList<User> load(Context context) {
         ArrayList<User> users = new ArrayList<>();
         User user;
-        ObjectInputStream file = new ObjectInputStream(new FileInputStream(new File(context.getFilesDir(),FILENAME)));
-        do{
-            user = (User) file.readObject();
-            if(user != null){
-                users.add(user);
-            }
-        }while(user!=null);
-        file.close();
+        ObjectInputStream file = null;
+        try{
+            file = new ObjectInputStream(new FileInputStream(new File(context.getFilesDir(),FILENAME)));
+            do{
+                user = (User) file.readObject();
+                if(user != null){
+                    users.add(user);
+                }
+            }while(user!=null);
+            file.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
         return users;
     }
