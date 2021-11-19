@@ -2,17 +2,37 @@ package com.example.verbum.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.verbum.R;
 import com.example.verbum.business.control.RegisterControl;
+import com.example.verbum.business.model.User;
+import com.example.verbum.exception.ConflictException;
+import com.example.verbum.exception.EmptyException;
+import com.example.verbum.exception.InvalidDataException;
+import com.example.verbum.exception.InvalidSexException;
+import com.example.verbum.exception.LengthFieldException;
 import com.example.verbum.infra.utils.Dialog;
+import com.example.verbum.infra.utils.MaskEdit;
+
+import java.io.IOException;
 
 public class RegisterActivity extends AppCompatActivity {
     private RegisterControl controller;
     private AppCompatActivity context;
+
+    private EditText name;
+    private EditText user;
+    private EditText password;
+    private EditText confirmPwd;
+    private EditText birthDate;
+    private EditText sex;
+
+    private Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,22 +41,55 @@ public class RegisterActivity extends AppCompatActivity {
         controller = new RegisterControl(getBaseContext());
         context = this;
 
-        controller.setNameET((EditText) findViewById(R.id.name_et));
-        controller.setEmailET((EditText) findViewById(R.id.user_et));
-        controller.setPasswordET((EditText) findViewById(R.id.pass_et));
-        controller.setConfirmPassET((EditText) findViewById(R.id.confirm_pass_et));
-        controller.setBirthDateET((EditText) findViewById(R.id.birth_et));
-        controller.setSexET((EditText) findViewById(R.id.sex_et));
-        Button registerButton = (Button) findViewById(R.id.register_button);
+        name = (EditText) findViewById(R.id.name_et);
+        user = (EditText) findViewById(R.id.user_et);
+        password = (EditText) findViewById(R.id.pass_et);
+        confirmPwd = (EditText) findViewById(R.id.confirm_pass_et);
+        birthDate = (EditText) findViewById(R.id.birth_et);
+        sex = (EditText) findViewById(R.id.sex_et);
+
+        registerButton = (Button) findViewById(R.id.register_button);
+
+        sex.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String s = editable.toString();
+                if(!s.equals(s.toUpperCase()))
+                {
+                    s=s.toUpperCase();
+                    sex.setText(s);
+                    sex.setSelection(sex.length()); //fix reverse texting
+                }
+            }
+        });
+        birthDate.addTextChangedListener(MaskEdit.mask(birthDate,MaskEdit.FORMAT_DATE));
+
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ret = controller.createNewUser();
-                if(ret.isEmpty()){
-                    Dialog.showDialog("Cadastro Realizado!","Seu cadastro foi realizado com sucesso",context);
+                User ret = null;
+                try {
+                    ret = controller.createNewUser(
+                                name.getText().toString(),
+                                user.getText().toString(),
+                                password.getText().toString(),
+                                confirmPwd.getText().toString(),
+                                birthDate.getText().toString(),
+                                sex.getText().toString()
+                        );
+                    Dialog.showDialog("Cadastro Realizado!","Cadastro efetuado com sucesso",context);
                     finish();
-                }else{
-                    Dialog.showDialog("Falha no cadastro",ret,context);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Dialog.showDialog("Falha na operação",e.getMessage(),context);
                 }
             }
         });

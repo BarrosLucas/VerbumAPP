@@ -17,6 +17,7 @@ import com.example.verbum.view.adapter.UserItemAdapter;
 import com.tsuryo.swipeablerv.SwipeLeftRightCallback;
 import com.tsuryo.swipeablerv.SwipeableRecyclerView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -24,6 +25,8 @@ public class SettingsActivity extends AppCompatActivity {
     SettingsControl controller;
     AppCompatActivity context;
     LinearLayout nothing;
+
+    ArrayList<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,14 @@ public class SettingsActivity extends AppCompatActivity {
         recyclerView = (SwipeableRecyclerView) findViewById(R.id.rv);
         nothing = (LinearLayout) findViewById(R.id.nothing);
 
-        ArrayList<User> users = controller.getUsers();
+        try {
+            users = controller.getUsers();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         updatePage(users);
 
         UserItemAdapter adapter = new UserItemAdapter(users);
@@ -45,13 +55,21 @@ public class SettingsActivity extends AppCompatActivity {
         recyclerView.setListener(new SwipeLeftRightCallback.Listener() {
             @Override
             public void onSwipedLeft(int position) {
-                if(controller.delete(users.get(position).getUsername())) {
-                    updatePage(controller.getUsers());
-                    UserItemAdapter adapter = new UserItemAdapter(controller.getUsers());
-                    recyclerView.setAdapter(adapter);
-                    Dialog.showDialog("Operação realizada com sucesso!","O usuário informado foi excluído com sucesso",context);
-                }else{
-                    Dialog.showDialog("Falha na operação","O usuário não foi excluído",context);
+                try {
+                    if (controller.delete(users.get(position).getUsername())) {
+                        updatePage(controller.getUsers());
+                        UserItemAdapter adapter = new UserItemAdapter(controller.getUsers());
+                        recyclerView.setAdapter(adapter);
+                        Dialog.showDialog("Operação realizada com sucesso!", "O usuário informado foi excluído com sucesso", context);
+                    } else {
+                        Dialog.showDialog("Falha na operação", "O usuário não foi excluído", context);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Dialog.showDialog("Falha na operação", "O usuário não foi excluído", context);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                    Dialog.showDialog("Falha na operação", "O usuário não foi excluído", context);
                 }
             }
 
@@ -62,16 +80,16 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
-    private void updatePage(ArrayList<User> users){
-        if(users != null){
-            if(users.isEmpty()){
+    private void updatePage(ArrayList<User> users) {
+        if (users != null) {
+            if (users.isEmpty()) {
                 recyclerView.setVisibility(View.GONE);
                 nothing.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 recyclerView.setVisibility(View.VISIBLE);
                 nothing.setVisibility(View.GONE);
             }
-        }else{
+        } else {
             recyclerView.setVisibility(View.GONE);
             nothing.setVisibility(View.VISIBLE);
         }

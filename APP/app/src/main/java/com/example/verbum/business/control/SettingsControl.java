@@ -4,7 +4,9 @@ import android.content.Context;
 
 import com.example.verbum.business.model.User;
 import com.example.verbum.infra.persistence.UserPersistence;
+import com.example.verbum.infra.utils.Dialog;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SettingsControl {
@@ -13,22 +15,25 @@ public class SettingsControl {
         this.context = context;
     }
 
-    public boolean delete(String username){
-        ArrayList<User> users = getUsers();
+    public boolean delete(String username) throws IOException, ClassNotFoundException {
+        ArrayList<User> users = null;
+        users = getUsers();
         for(int i = 0; i<users.size();i++){
             if(users.get(i).getUsername().equals(username)){
                 users.remove(i);
-                return updateList(users);
+                 if(updateList(users)){
+                        return true;
+                    }
             }
         }
         return false;
     }
 
-    public ArrayList<User> getUsers(){
+    public ArrayList<User> getUsers() throws IOException, ClassNotFoundException {
         UserPersistence userPersistence = new UserPersistence();
         return userPersistence.load(context);
     }
-    public boolean updateList(ArrayList<User> users){
+    public boolean updateList(ArrayList<User> users) throws IOException {
         UserPersistence userPersistence = new UserPersistence();
         return userPersistence.save(users,context);
     }

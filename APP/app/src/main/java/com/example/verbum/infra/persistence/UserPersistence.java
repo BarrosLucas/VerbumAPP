@@ -29,37 +29,28 @@ public class UserPersistence {
         return uniqueInstance;
     }
 
-    public boolean save(ArrayList<User> users, Context context){
-        try{
-            ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(new File(context.getFilesDir(), FILENAME)));
-            for(User user: users){
-                file.writeObject(user);
-            }
-            file.close();
-            return true;
-        }catch (IOException e){
-            Log.e("Save Error",e.getMessage()+":"+e.getStackTrace().toString());
-            return false;
+    public boolean save(ArrayList<User> users, Context context) throws IOException {
+        ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(new File(context.getFilesDir(), FILENAME)));
+        for(User user: users){
+            file.writeObject(user);
         }
+        file.close();
+        return true;
+
     }
 
-    public ArrayList<User> load(Context context){
+    public ArrayList<User> load(Context context) throws IOException, ClassNotFoundException {
         ArrayList<User> users = new ArrayList<>();
-        try{
-            User user;
-            ObjectInputStream file = new ObjectInputStream(new FileInputStream(new File(context.getFilesDir(),FILENAME)));
-            do{
-                user = (User) file.readObject();
-                if(user != null){
-                    users.add(user);
-                }
-            }while(user!=null);
-            file.close();
-        }catch (IOException e){
-            Log.e("Load Error",e.toString());
-        }catch (ClassNotFoundException e){
-            Log.e("ClassNotFound",e.getMessage());
-        }
+        User user;
+        ObjectInputStream file = new ObjectInputStream(new FileInputStream(new File(context.getFilesDir(),FILENAME)));
+        do{
+            user = (User) file.readObject();
+            if(user != null){
+                users.add(user);
+            }
+        }while(user!=null);
+        file.close();
+
         return users;
     }
 }
