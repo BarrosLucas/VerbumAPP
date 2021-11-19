@@ -16,7 +16,7 @@ public class ValidatorConfirmPwd implements Validator {
     }
 
     public void isEqualsPasswords(String pass, String confirmPass) throws InvalidDataException {
-        if(pass.equals(confirmPass)){
+        if(!pass.equals(confirmPass)){
             throw new InvalidDataException(INVALID_PASS_COFIRM);
         }
     }

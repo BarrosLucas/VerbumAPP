@@ -14,6 +14,8 @@ import com.example.verbum.business.control.LoginControl;
 import com.example.verbum.business.model.User;
 import com.example.verbum.infra.utils.Dialog;
 
+import java.io.IOException;
+
 public class LoginActivity extends AppCompatActivity {
     private LoginControl controller;
     private AppCompatActivity context;
@@ -32,14 +34,22 @@ public class LoginActivity extends AppCompatActivity {
         loginBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User u = controller.login();
-                if(u != null){
-                    Intent i = new Intent(getBaseContext(),HomeActivity.class);
-                    i.putExtra("USER",u);
-                    finish();
-                    startActivity(i);
-                }else{
-                    Dialog.showDialog("Login","Seus dados estão inconsistentes!",context);
+                try{
+                    User u = controller.login();
+                    if(u != null){
+                        Intent i = new Intent(getBaseContext(),HomeActivity.class);
+                        i.putExtra("USER",u);
+                        finish();
+                        startActivity(i);
+                    }else{
+                        Dialog.showDialog("Login","Seus dados estão inconsistentes!",context);
+                    }
+                } catch (IOException e) {
+                    Dialog.showDialog("Login","Falha ao efetuar login",context);
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    Dialog.showDialog("Login","Falha ao efetuar login",context);
+                    e.printStackTrace();
                 }
             }
         });

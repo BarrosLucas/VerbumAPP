@@ -8,6 +8,7 @@ import com.example.verbum.business.model.User;
 import com.example.verbum.infra.persistence.UserPersistence;
 import com.example.verbum.infra.utils.Verify;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoginControl {
@@ -36,7 +37,7 @@ public class LoginControl {
     }
 
 
-    public User login(){
+    public User login() throws IOException, ClassNotFoundException {
         if(!emailET.getText().toString().isEmpty()){
             User u = Verify.hasItem(getUsers(),emailET.getText().toString());
             if(u!=null){
@@ -48,7 +49,7 @@ public class LoginControl {
         return null;
     }
 
-    public ArrayList<User> getUsers(){
+    public ArrayList<User> getUsers() throws IOException, ClassNotFoundException {
         UserPersistence userPersistence = new UserPersistence();
         return userPersistence.load(context);
     }

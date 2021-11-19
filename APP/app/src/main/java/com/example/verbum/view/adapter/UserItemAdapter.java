@@ -38,7 +38,7 @@ public class UserItemAdapter extends RecyclerView.Adapter<UserItemAdapter.UserVi
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         holder.username.setText(users.get(position).getUsername());
-        holder.password.setText(users.get(position).getPassword());
+        holder.password.setText(users.get(position).getBirthDate().toString());
     }
 
     @Override
