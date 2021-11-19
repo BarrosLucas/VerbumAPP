@@ -9,15 +9,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.verbum.R;
+import com.example.verbum.business.control.Validator;
+import com.example.verbum.business.control.strategy.OrderByStrategy;
 import com.example.verbum.business.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserItemAdapter extends RecyclerView.Adapter<UserItemAdapter.UserViewHolder> {
     List<User> users;
 
-    public UserItemAdapter(List<User> pessoas){
+    public UserItemAdapter(ArrayList<User> pessoas){
         this.users = pessoas;
+    }
+
+    public UserItemAdapter(ArrayList<User> pessoas, OrderByStrategy orderBy){
+        this.users = orderBy.order(pessoas);
     }
 
     @NonNull

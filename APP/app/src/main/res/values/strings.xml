@@ -19,4 +19,6 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="nothing_to_show">Não foi encontrado nenhum\ncadastro</string>
     <string name="welcome">Bem-vindo</string>
+    <string name="order_by_name">Por nome</string>
+    <string name="order_by_birth_date">Por nascimento</string>
 </resources>

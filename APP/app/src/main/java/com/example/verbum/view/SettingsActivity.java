@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.verbum.R;
 import com.example.verbum.business.control.SettingsControl;
+import com.example.verbum.business.control.impl.strategy.OrderByBirthDate;
+import com.example.verbum.business.control.impl.strategy.OrderByName;
+import com.example.verbum.business.control.strategy.OrderByStrategy;
 import com.example.verbum.business.model.User;
 import com.example.verbum.infra.persistence.UserPersistence;
 import com.example.verbum.infra.utils.Dialog;
@@ -25,6 +29,8 @@ public class SettingsActivity extends AppCompatActivity {
     SettingsControl controller;
     AppCompatActivity context;
     LinearLayout nothing;
+    TextView byBirth;
+    TextView byUser;
 
     ArrayList<User> users;
 
@@ -32,6 +38,12 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        byBirth = (TextView) findViewById(R.id.order_birth);
+        byUser = (TextView) findViewById(R.id.order_name);
+
+        byBirth.setOnClickListener(v-> orderBy(new OrderByBirthDate(), users));
+        byUser.setOnClickListener(v->orderBy(new OrderByName(), users));
 
         controller = new SettingsControl(getBaseContext());
         context = this;
@@ -48,7 +60,6 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         updatePage(users);
-
         UserItemAdapter adapter = new UserItemAdapter(users);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -93,6 +104,11 @@ public class SettingsActivity extends AppCompatActivity {
             recyclerView.setVisibility(View.GONE);
             nothing.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void orderBy(OrderByStrategy order, ArrayList<User> users){
+        UserItemAdapter adapter = new UserItemAdapter(users, order);
+        recyclerView.setAdapter(adapter);
     }
 
 }

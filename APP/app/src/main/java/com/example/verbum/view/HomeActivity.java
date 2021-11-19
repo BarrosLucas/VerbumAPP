@@ -11,8 +11,11 @@ import com.example.verbum.business.control.HomeControl;
 import com.example.verbum.business.model.User;
 
 public class HomeActivity extends AppCompatActivity {
-
-    HomeControl controller;
+    TextView name;
+    TextView username;
+    TextView pass;
+    TextView birth;
+    TextView sex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +25,17 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         User user = (User) intent.getSerializableExtra("USER");
 
-        controller = new HomeControl(user);
+        name = (TextView) findViewById(R.id.name_home);
+        username = (TextView) findViewById(R.id.user_home);
+        pass = (TextView) findViewById(R.id.pass_home);
+        birth = (TextView) findViewById(R.id.birth_home);
+        sex = (TextView) findViewById(R.id.sex_home);
 
-        controller.setName((TextView) findViewById(R.id.name_home));
-        controller.setUser((TextView) findViewById(R.id.user_home));
-        controller.setPass((TextView) findViewById(R.id.pass_home));
-        controller.setBirth((TextView) findViewById(R.id.birth_home));
-        controller.setSex((TextView) findViewById(R.id.sex_home));
+        name.setText(user.getName());
+        username.setText(user.getUsername());
+        pass.setText(user.getPassword());
+        birth.setText(user.getBirthDate().toString());
+        sex.setText(user.getSex());
 
     }
 }

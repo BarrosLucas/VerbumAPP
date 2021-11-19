@@ -1,33 +1,15 @@
 package com.example.verbum.business.control;
 
-import static com.example.verbum.infra.utils.ExceptionMessages.INVALID_BIRTH_DATE;
-import static com.example.verbum.infra.utils.ExceptionMessages.INVALID_DATA_PASSWORD;
-import static com.example.verbum.infra.utils.ExceptionMessages.INVALID_DATA_USER;
-import static com.example.verbum.infra.utils.ExceptionMessages.INVALID_LENGTH_PASSWORD;
-import static com.example.verbum.infra.utils.ExceptionMessages.INVALID_LENGTH_USER;
-import static com.example.verbum.infra.utils.ExceptionMessages.INVALID_NAME_LENGTH;
-import static com.example.verbum.infra.utils.ExceptionMessages.INVALID_PASS_COFIRM;
-
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
 
-import com.example.verbum.business.control.impl.ValidatorBirthDate;
-import com.example.verbum.business.control.impl.ValidatorConfirmPwd;
-import com.example.verbum.business.control.impl.ValidatorName;
-import com.example.verbum.business.control.impl.ValidatorPassword;
-import com.example.verbum.business.control.impl.ValidatorSex;
-import com.example.verbum.business.control.impl.ValidatorUsername;
+import com.example.verbum.business.control.impl.validators.ValidatorBirthDate;
+import com.example.verbum.business.control.impl.validators.ValidatorConfirmPwd;
+import com.example.verbum.business.control.impl.validators.ValidatorName;
+import com.example.verbum.business.control.impl.validators.ValidatorPassword;
+import com.example.verbum.business.control.impl.validators.ValidatorSex;
+import com.example.verbum.business.control.impl.validators.ValidatorUsername;
 import com.example.verbum.business.model.User;
-import com.example.verbum.exception.ConflictException;
-import com.example.verbum.exception.EmptyException;
-import com.example.verbum.exception.InvalidDataException;
-import com.example.verbum.exception.InvalidSexException;
-import com.example.verbum.exception.LengthFieldException;
 import com.example.verbum.infra.persistence.UserPersistence;
-import com.example.verbum.infra.utils.MaskEdit;
-import com.example.verbum.infra.utils.Verify;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.verbum.business.control.impl;
+package com.example.verbum.business.control.impl.validators;
 
 import com.example.verbum.business.control.Validator;
 import com.example.verbum.exception.EmptyException;

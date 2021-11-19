@@ -11,15 +11,8 @@ import android.widget.EditText;
 import com.example.verbum.R;
 import com.example.verbum.business.control.RegisterControl;
 import com.example.verbum.business.model.User;
-import com.example.verbum.exception.ConflictException;
-import com.example.verbum.exception.EmptyException;
-import com.example.verbum.exception.InvalidDataException;
-import com.example.verbum.exception.InvalidSexException;
-import com.example.verbum.exception.LengthFieldException;
 import com.example.verbum.infra.utils.Dialog;
 import com.example.verbum.infra.utils.MaskEdit;
-
-import java.io.IOException;
 
 public class RegisterActivity extends AppCompatActivity {
     private RegisterControl controller;

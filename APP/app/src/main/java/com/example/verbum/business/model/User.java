@@ -1,20 +1,21 @@
 package com.example.verbum.business.model;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
-public class User implements Serializable {
+public class User implements Serializable{
     private static final long serialVersionUID = 1L;
 
     private String name;
     private String username;
     private String password;
-    private String birthDate;
+    private Date birthDate;
     private String sex;
 
     public User(){
 
     }
-    public User(String name, String username, String password, String birthDate, String sex){
+    public User(String name, String username, String password, Date birthDate, String sex){
         this.name = name;
         this.username = username;
         this.password = password;
@@ -46,12 +47,13 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
     public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+        String[] date = birthDate.split("/");
+        this.birthDate = new Date(Integer.parseInt(date[0]),Integer.parseInt(date[1]),Integer.parseInt(date[2]));
     }
 
     public String getSex() {

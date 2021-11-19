@@ -1,4 +1,4 @@
-package com.example.verbum.business.control.impl;
+package com.example.verbum.business.control.impl.validators;
 
 import static com.example.verbum.infra.utils.ExceptionMessages.INVALID_DATA_PASSWORD;
 import static com.example.verbum.infra.utils.ExceptionMessages.INVALID_LENGTH_PASSWORD;
