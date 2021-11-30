@@ -2,6 +2,7 @@ package com.example.verbum.business.control;
 
 import android.content.Context;
 
+import com.example.verbum.business.control.factory.SexFactory;
 import com.example.verbum.business.control.impl.validators.ValidatorBirthDate;
 import com.example.verbum.business.control.impl.validators.ValidatorConfirmPwd;
 import com.example.verbum.business.control.impl.validators.ValidatorName;
@@ -53,7 +54,7 @@ public class RegisterControl {
         user.setName(nameET);
         user.setBirthDate(birthDateET);
         user.setPassword(passwordET);
-        user.setSex(sexET);
+        user.setSex(new SexFactory().getSexByText(sexET));
 
         users.add(user);
 

@@ -10,12 +10,12 @@ public class User implements Serializable{
     private String username;
     private String password;
     private Date birthDate;
-    private String sex;
+    private Sex sex;
 
     public User(){
 
     }
-    public User(String name, String username, String password, Date birthDate, String sex){
+    public User(String name, String username, String password, Date birthDate, Sex sex){
         this.name = name;
         this.username = username;
         this.password = password;
@@ -56,11 +56,11 @@ public class User implements Serializable{
         this.birthDate = new Date(Integer.parseInt(date[0]),Integer.parseInt(date[1]),Integer.parseInt(date[2]));
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 }
