@@ -43,7 +43,7 @@ public class FileUtils {
         if (url.exists()) {
             //TODO you want to use this method then create file provider in androidmanifest.xml with fileprovider name
 
-            Uri uri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".fileprovider", url);
+            Uri uri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".com.example.verbum.business.report", url);
 
             String urlString = url.toString().toLowerCase();
 
@@ -129,8 +129,6 @@ public class FileUtils {
      */
     public static String getAppPath(Context context) {
         File dir = new File(android.os.Environment.getExternalStorageDirectory()
-                + File.separator
-                + "Verbum"
                 + File.separator);
         if (!dir.exists()) {
             dir.mkdir();

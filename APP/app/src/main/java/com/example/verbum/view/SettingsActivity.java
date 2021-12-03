@@ -121,7 +121,12 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void pdfGenerator(){
-        controller.createPDF();
+        try {
+            controller.createPDF();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Dialog.showDialog("Falha na criação do PDF","O PDF não pôde ser criado",this);
+        }
     }
 
     private void imgGenerator(){

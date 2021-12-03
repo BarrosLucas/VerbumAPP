@@ -3,6 +3,7 @@ package com.example.verbum.business.report;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.os.Environment;
 import android.widget.Toast;
 
 import com.example.verbum.business.model.User;
@@ -37,24 +38,21 @@ public class GeneratePDFReport {
     Context context;
 
     public GeneratePDFReport(Context context){
-        dest = FileUtils.getAppPath(context) + "Report.pdf";
         this.context = context;
-        if (new File(dest).exists()) {
-            new File(dest).delete();
-        }
+        dest = "Report.pdf";
     }
 
 
     public void createPdf() throws IOException {
         createFile();
         settings();
-        createPdf();
+        //createPdf();
         body();
-        FileUtils.openFile(context, new File(dest));
+        FileUtils.openFile(context, new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).toString()+"/"+dest));
     }
 
     public void createFile() throws FileNotFoundException {
-        PdfWriter pdfWriter = new PdfWriter(new FileOutputStream(dest));
+        PdfWriter pdfWriter = new PdfWriter(new FileOutputStream(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).toString()+"/"+dest)));
         pdfDocument = new PdfDocument(pdfWriter);
         info = pdfDocument.getDocumentInfo();
     }
@@ -79,13 +77,13 @@ public class GeneratePDFReport {
         float mValueFontSize = 26.0f;
 
 
-        PdfFont font = PdfFontFactory.createFont("assets/fonts/brandon_medium.otf", "UTF-8", true);
+       // PdfFont font = PdfFontFactory.createFont("assets/fonts/brandon_medium.otf", "UTF-8", true);
 
         LineSeparator lineSeparator = new LineSeparator(new DottedLine());
         lineSeparator.setStrokeColor(new DeviceRgb(0, 0, 68));
 
 
-        Text mOrderDetailsTitleChunk = new Text("Detalhes de Logins").setFont(font).setFontSize(36.0f).setFontColor(mColorBlack);
+        Text mOrderDetailsTitleChunk = new Text("VERBUM APP").setFontSize(36.0f).setFontColor(mColorBlack);
         Paragraph mOrderDetailsTitleParagraph = new Paragraph(mOrderDetailsTitleChunk)
                 .setTextAlignment(TextAlignment.CENTER);
         document.add(mOrderDetailsTitleParagraph);
@@ -93,11 +91,11 @@ public class GeneratePDFReport {
         ArrayList<User> users = getUsers();
 
         for(User u: users){
-            Text mOrderIdChunk = new Text(u.getName()+": ").setFont(font).setFontSize(mHeadingFontSize).setFontColor(mColorAccent);
+            Text mOrderIdChunk = new Text(u.getName()+": ").setFontSize(mHeadingFontSize).setFontColor(mColorAccent);
             Paragraph mOrderIdParagraph = new Paragraph(mOrderIdChunk);
             document.add(mOrderIdParagraph);
 
-            Text mOrderIdValueChunk = new Text(u.getAmountAccess()+"").setFont(font).setFontSize(mValueFontSize).setFontColor(mColorBlack);
+            Text mOrderIdValueChunk = new Text("Qnt. de Logins: "+u.getAmountAccess()+"").setFontSize(mValueFontSize).setFontColor(mColorBlack);
             Paragraph mOrderIdValueParagraph = new Paragraph(mOrderIdValueChunk);
             document.add(mOrderIdValueParagraph);
 

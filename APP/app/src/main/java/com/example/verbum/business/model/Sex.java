@@ -1,5 +1,7 @@
 package com.example.verbum.business.model;
 
-public interface Sex {
+import java.io.Serializable;
+
+public interface Sex extends Serializable {
     String getSex();
 }
