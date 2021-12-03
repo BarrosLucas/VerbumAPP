@@ -40,7 +40,7 @@ public class SettingsControl {
     }
 
     public void createPDF() throws IOException {
-        (new GeneratePDFReport(context)).createPdf();
+        (new GeneratePDFReport(context)).generateFile();
     }
 
     public void createIMG(){

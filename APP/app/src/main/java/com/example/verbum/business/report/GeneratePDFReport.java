@@ -30,20 +30,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GeneratePDFReport {
+public class GeneratePDFReport extends GenerateReports{
     PdfDocumentInfo info;
-    String dest;
     PdfDocument pdfDocument;
     Document document;
-    Context context;
 
     public GeneratePDFReport(Context context){
+        super(context);
         this.context = context;
         dest = "Report.pdf";
     }
 
 
-    public void createPdf() throws IOException {
+    @Override
+    public void generateFile() throws IOException {
         createFile();
         settings();
         //createPdf();
@@ -51,12 +51,14 @@ public class GeneratePDFReport {
         FileUtils.openFile(context, new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).toString()+"/"+dest));
     }
 
+    @Override
     public void createFile() throws FileNotFoundException {
         PdfWriter pdfWriter = new PdfWriter(new FileOutputStream(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).toString()+"/"+dest)));
         pdfDocument = new PdfDocument(pdfWriter);
         info = pdfDocument.getDocumentInfo();
     }
 
+    @Override
     public void settings() throws FileNotFoundException {
         if(info == null){
             createFile();
@@ -70,6 +72,7 @@ public class GeneratePDFReport {
 
     }
 
+    @Override
     public void body() throws IOException {
         Color mColorAccent = new DeviceRgb(153, 204, 255);
         Color mColorBlack = new DeviceRgb(0, 0, 0);
