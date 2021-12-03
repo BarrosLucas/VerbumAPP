@@ -11,16 +11,18 @@ public class User implements Serializable{
     private String password;
     private Date birthDate;
     private Sex sex;
+    private long amountAccess;
 
     public User(){
 
     }
-    public User(String name, String username, String password, Date birthDate, Sex sex){
+    public User(String name, String username, String password, Date birthDate, Sex sex, long amountAccess){
         this.name = name;
         this.username = username;
         this.password = password;
         this.birthDate = birthDate;
         this.sex = sex;
+        this.amountAccess = amountAccess;
     }
 
     public String getName() {
@@ -62,5 +64,17 @@ public class User implements Serializable{
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public long getAmountAccess() {
+        return amountAccess;
+    }
+
+    public void setAmountAccess(long amountAccess) {
+        this.amountAccess = amountAccess;
     }
 }

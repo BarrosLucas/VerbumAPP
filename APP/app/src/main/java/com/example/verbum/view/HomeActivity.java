@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.widget.TextView;
 
 import com.example.verbum.R;
@@ -35,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         username.setText(user.getUsername());
         pass.setText(user.getPassword());
         birth.setText(user.getBirthDate().toString());
-        sex.setText(user.getSex());
+        sex.setText(user.getSex().getSex());
 
     }
 }

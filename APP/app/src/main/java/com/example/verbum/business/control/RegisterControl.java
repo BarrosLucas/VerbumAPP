@@ -55,6 +55,7 @@ public class RegisterControl {
         user.setBirthDate(birthDateET);
         user.setPassword(passwordET);
         user.setSex(new SexFactory().getSexByText(sexET));
+        user.setAmountAccess(0);
 
         users.add(user);
 

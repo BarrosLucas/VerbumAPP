@@ -42,6 +42,7 @@ public class LoginControl {
             User u = Verify.hasItem(getUsers(),emailET.getText().toString());
             if(u!=null){
                 if(u.getPassword().equals(passwordET.getText().toString())){
+                    updateRegistLogin(u.getUsername());
                     return u;
                 }
             }
@@ -52,6 +53,17 @@ public class LoginControl {
     public ArrayList<User> getUsers() throws IOException, ClassNotFoundException {
         UserPersistence userPersistence = new UserPersistence();
         return userPersistence.load(context);
+    }
+
+    public void updateRegistLogin(String user) throws IOException, ClassNotFoundException {
+        ArrayList<User> users = getUsers();
+        for(int i = 0; i < users.size(); i++){
+            if(users.get(i).getUsername().equals(user)){
+                users.get(i).setAmountAccess(users.get(i).getAmountAccess()+1);
+                UserPersistence userPersistence = new UserPersistence();
+                userPersistence.save(users,context);
+            }
+        }
     }
 
 

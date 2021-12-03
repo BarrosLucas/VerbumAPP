@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,6 +32,8 @@ public class SettingsActivity extends AppCompatActivity {
     LinearLayout nothing;
     TextView byBirth;
     TextView byUser;
+    ImageView pdfButton;
+    ImageView imgButton;
 
     ArrayList<User> users;
 
@@ -42,8 +45,14 @@ public class SettingsActivity extends AppCompatActivity {
         byBirth = (TextView) findViewById(R.id.order_birth);
         byUser = (TextView) findViewById(R.id.order_name);
 
+        pdfButton = (ImageView) findViewById(R.id.pdf_generator);
+        imgButton = (ImageView) findViewById(R.id.img_generator);
+
         byBirth.setOnClickListener(v-> orderBy(new OrderByBirthDate(), users));
         byUser.setOnClickListener(v->orderBy(new OrderByName(), users));
+
+        pdfButton.setOnClickListener(v-> pdfGenerator());
+        imgButton.setOnClickListener(v-> imgGenerator());
 
         controller = new SettingsControl(getBaseContext());
         context = this;
@@ -109,6 +118,14 @@ public class SettingsActivity extends AppCompatActivity {
     private void orderBy(OrderByStrategy order, ArrayList<User> users){
         UserItemAdapter adapter = new UserItemAdapter(users, order);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void pdfGenerator(){
+        controller.createPDF();
+    }
+
+    private void imgGenerator(){
+        controller.createIMG();
     }
 
 }

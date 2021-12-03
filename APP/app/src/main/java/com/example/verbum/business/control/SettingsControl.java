@@ -37,4 +37,12 @@ public class SettingsControl {
         UserPersistence userPersistence = new UserPersistence();
         return userPersistence.save(users,context);
     }
+
+    public void createPDF(){
+
+    }
+
+    public void createIMG(){
+
+    }
 }
