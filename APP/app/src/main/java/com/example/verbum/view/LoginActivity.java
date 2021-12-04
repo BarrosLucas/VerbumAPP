@@ -11,44 +11,50 @@ import android.widget.TextView;
 
 import com.example.verbum.R;
 import com.example.verbum.business.control.LoginControl;
+import com.example.verbum.business.control.RegisterControl;
+import com.example.verbum.business.control.UserFacade;
 import com.example.verbum.business.model.User;
+import com.example.verbum.exception.EmptyUserException;
 import com.example.verbum.infra.utils.Dialog;
 
 import java.io.IOException;
 
 public class LoginActivity extends AppCompatActivity {
-    private LoginControl controller;
     private AppCompatActivity context;
+    EditText emailET;
+    EditText passwordET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        controller = new LoginControl(getBaseContext());
+        UserFacade facade = new UserFacade(
+                new LoginControl(getBaseContext()),null
+        );
         context = this;
 
-        controller.setEmailET((EditText) findViewById(R.id.login_et));
-        controller.setPasswordET((EditText) findViewById(R.id.password_et));
+        emailET = (EditText) findViewById(R.id.login_et);
+        passwordET = (EditText) findViewById(R.id.password_et);
 
         Button loginBt = (Button) findViewById(R.id.login_bt);
         loginBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
-                    User u = controller.login();
-                    if(u != null){
-                        Intent i = new Intent(getBaseContext(),HomeActivity.class);
-                        i.putExtra("USER",u);
-                        finish();
-                        startActivity(i);
-                    }else{
-                        Dialog.showDialog("Login","Seus dados estão inconsistentes!",context);
-                    }
+                    User u = facade.doLogin(emailET.getText().toString(), passwordET.getText().toString());
+                    Intent i = new Intent(getBaseContext(),HomeActivity.class);
+                    i.putExtra("USER",u);
+                    finish();
+                    startActivity(i);
+
                 } catch (IOException e) {
                     Dialog.showDialog("Login","Falha ao efetuar login",context);
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     Dialog.showDialog("Login","Falha ao efetuar login",context);
+                    e.printStackTrace();
+                } catch (EmptyUserException e) {
+                    Dialog.showDialog("Login","Revise seus dados para login",context);
                     e.printStackTrace();
                 }
             }

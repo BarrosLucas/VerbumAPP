@@ -16,4 +16,5 @@ public class ExceptionMessages {
     public static final String INVALID_DATA_USER = "O nome de usuário não deve conter números";
     public static final String INVALID_DATA_PASSWORD = "A senha deve conter ao menos dois números e deve conter letras";
     public static final String USER_ALREADY_EXISTS = "O nome de usuário já existe";
+    public static final String EMPTY_USER = "Usuário não encontrado";
 }
