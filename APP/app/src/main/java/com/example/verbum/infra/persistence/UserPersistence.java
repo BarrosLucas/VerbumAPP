@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.example.verbum.business.control.memento.UsersCareTaker;
+import com.example.verbum.business.control.memento.UsersMemento;
 import com.example.verbum.business.model.User;
 
 import java.io.File;
@@ -35,6 +37,11 @@ public class UserPersistence {
         for(User user: users){
             file.writeObject(user);
         }
+
+        UsersMemento usersMemento = UsersMemento.getInstance(users);
+        UsersCareTaker usersCareTaker = UsersCareTaker.getInstance();
+        usersCareTaker.addMemento(usersMemento);
+
         file.close();
         return true;
 

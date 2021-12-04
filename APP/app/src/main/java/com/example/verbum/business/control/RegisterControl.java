@@ -9,6 +9,8 @@ import com.example.verbum.business.control.impl.validators.ValidatorName;
 import com.example.verbum.business.control.impl.validators.ValidatorPassword;
 import com.example.verbum.business.control.impl.validators.ValidatorSex;
 import com.example.verbum.business.control.impl.validators.ValidatorUsername;
+import com.example.verbum.business.control.memento.UsersCareTaker;
+import com.example.verbum.business.control.memento.UsersMemento;
 import com.example.verbum.business.model.User;
 import com.example.verbum.infra.persistence.UserPersistence;
 
