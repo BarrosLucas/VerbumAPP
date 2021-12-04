@@ -10,9 +10,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.verbum.R;
+import com.example.verbum.business.control.DoLoginCommand;
 import com.example.verbum.business.control.LoginControl;
 import com.example.verbum.business.control.RegisterControl;
 import com.example.verbum.business.control.UserFacade;
+import com.example.verbum.business.control.command.Switch;
 import com.example.verbum.business.model.User;
 import com.example.verbum.exception.EmptyUserException;
 import com.example.verbum.infra.utils.Dialog;
@@ -29,6 +31,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Switch switchInstance = Switch.getInstance();
+
         facade = new UserFacade(
                 new LoginControl(getBaseContext()),null
         );
@@ -37,12 +42,17 @@ public class LoginActivity extends AppCompatActivity {
         emailET = (EditText) findViewById(R.id.login_et);
         passwordET = (EditText) findViewById(R.id.password_et);
 
+
+
         Button loginBt = (Button) findViewById(R.id.login_bt);
         loginBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
-                    User u = facade.doLogin(emailET.getText().toString(), passwordET.getText().toString());
+                    User u = switchInstance.storeAndExecute((new DoLoginCommand(facade,
+                            emailET.getText().toString(),
+                            passwordET.getText().toString())));
+
                     Intent i = new Intent(getBaseContext(),HomeActivity.class);
                     i.putExtra("USER",u);
                     finish();
@@ -56,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } catch (EmptyUserException e) {
                     Dialog.showDialog("Login","Revise seus dados para login",context);
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

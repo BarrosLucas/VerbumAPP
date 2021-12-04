@@ -9,8 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.verbum.R;
+import com.example.verbum.business.control.DoLoginCommand;
+import com.example.verbum.business.control.DoRegisterCommand;
 import com.example.verbum.business.control.RegisterControl;
 import com.example.verbum.business.control.UserFacade;
+import com.example.verbum.business.control.command.Switch;
 import com.example.verbum.business.model.User;
 import com.example.verbum.infra.utils.Dialog;
 import com.example.verbum.infra.utils.MaskEdit;
@@ -33,6 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        Switch switchInstance = Switch.getInstance();
 
         context = this;
 
@@ -74,14 +79,14 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 User ret = null;
                 try {
-                    ret = facade.doRegister(
-                                name.getText().toString(),
-                                user.getText().toString(),
-                                password.getText().toString(),
-                                confirmPwd.getText().toString(),
-                                birthDate.getText().toString(),
-                                sex.getText().toString()
-                        );
+                    User u = switchInstance.storeAndExecute((new DoRegisterCommand(facade,
+                            name.getText().toString(),
+                            user.getText().toString(),
+                            password.getText().toString(),
+                            confirmPwd.getText().toString(),
+                            birthDate.getText().toString(),
+                            sex.getText().toString())));
+
                     Dialog.showDialog("Cadastro Realizado!","Cadastro efetuado com sucesso",context);
                     finish();
                 } catch (Exception e) {
