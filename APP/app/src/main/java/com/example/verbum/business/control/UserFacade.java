@@ -17,13 +17,13 @@ public class UserFacade {
         return loginControl.login(email,pass);
     }
 
-    public void doRegister(String nameET,
+    public User doRegister(String nameET,
                            String emailET,
                            String passwordET,
                            String confirmPassET,
                            String birthDateET,
                            String sexET) throws Exception {
-        registerControl.createNewUser(
+        return registerControl.createNewUser(
                 nameET,
                 emailET,
                 passwordET,

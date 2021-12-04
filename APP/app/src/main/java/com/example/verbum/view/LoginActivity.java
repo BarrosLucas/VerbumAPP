@@ -23,12 +23,13 @@ public class LoginActivity extends AppCompatActivity {
     private AppCompatActivity context;
     EditText emailET;
     EditText passwordET;
+    UserFacade facade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        UserFacade facade = new UserFacade(
+        facade = new UserFacade(
                 new LoginControl(getBaseContext()),null
         );
         context = this;

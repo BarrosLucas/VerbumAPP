@@ -10,12 +10,12 @@ import android.widget.EditText;
 
 import com.example.verbum.R;
 import com.example.verbum.business.control.RegisterControl;
+import com.example.verbum.business.control.UserFacade;
 import com.example.verbum.business.model.User;
 import com.example.verbum.infra.utils.Dialog;
 import com.example.verbum.infra.utils.MaskEdit;
 
 public class RegisterActivity extends AppCompatActivity {
-    private RegisterControl controller;
     private AppCompatActivity context;
 
     private EditText name;
@@ -27,11 +27,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     private Button registerButton;
 
+    private UserFacade facade;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        controller = new RegisterControl(getBaseContext());
+
         context = this;
 
         name = (EditText) findViewById(R.id.name_et);
@@ -42,6 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
         sex = (EditText) findViewById(R.id.sex_et);
 
         registerButton = (Button) findViewById(R.id.register_button);
+
+        facade = new UserFacade(null, new RegisterControl(getBaseContext()));
 
         sex.addTextChangedListener(new TextWatcher() {
             @Override
@@ -70,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 User ret = null;
                 try {
-                    ret = controller.createNewUser(
+                    ret = facade.doRegister(
                                 name.getText().toString(),
                                 user.getText().toString(),
                                 password.getText().toString(),
