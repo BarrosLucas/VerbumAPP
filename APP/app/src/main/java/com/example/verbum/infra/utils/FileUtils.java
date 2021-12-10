@@ -72,6 +72,8 @@ public class FileUtils {
                     || urlString.toLowerCase().contains(".pptx")) {
                 // Powerpoint file
                 intent.setDataAndType(uri, "application/vnd.ms-powerpoint");
+            } else if(urlString.toLowerCase().contains(".html")){
+                intent.setDataAndType(uri, "text/html");
             } else if (urlString.toLowerCase().contains(".xls")
                     || urlString.toLowerCase().contains(".xlsx")) {
                 // Excel file

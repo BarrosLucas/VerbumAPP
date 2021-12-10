@@ -3,6 +3,7 @@ package com.example.verbum.business.control;
 import android.content.Context;
 
 import com.example.verbum.business.model.User;
+import com.example.verbum.business.report.GenerateHTMLReport;
 import com.example.verbum.business.report.GeneratePDFReport;
 import com.example.verbum.infra.persistence.UserPersistence;
 import com.example.verbum.infra.utils.Dialog;
@@ -43,7 +44,7 @@ public class SettingsControl {
         (new GeneratePDFReport(context)).generateFile();
     }
 
-    public void createIMG(){
-
+    public void createIMG() throws Exception {
+        (new GenerateHTMLReport(context)).generateFile();
     }
 }

@@ -130,7 +130,12 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void imgGenerator(){
-        controller.createIMG();
+        try {
+            controller.createIMG();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Dialog.showDialog("Falha na criação da página","A página HTML não pôde ser criada",this);
+        }
     }
 
 }

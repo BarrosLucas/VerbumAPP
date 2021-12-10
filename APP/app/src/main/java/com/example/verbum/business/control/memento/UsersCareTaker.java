@@ -24,7 +24,7 @@ public class UsersCareTaker {
 
     public UsersMemento getLastState(){
         if(usersStates.size() <= 0){
-            return new UsersMemento(new ArrayList<>());
+            return UsersMemento.getInstance(new ArrayList<>());
         }
         UsersMemento stateSave = usersStates.get(usersStates.size()-1);
         usersStates.remove(usersStates.size()-1);

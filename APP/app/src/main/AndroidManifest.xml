@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Verbum">
         <provider
-            android:name=".business.report.GenerateReports"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.com.example.verbum.business.report"
             android:exported="false"
             android:grantUriPermissions="true">
