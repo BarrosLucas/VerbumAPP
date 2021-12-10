@@ -2,7 +2,6 @@ package com.example.verbum.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +11,13 @@ import android.widget.TextView;
 
 import com.example.verbum.R;
 import com.example.verbum.business.control.SettingsControl;
+import com.example.verbum.business.control.handle.BaseHandle;
 import com.example.verbum.business.control.impl.strategy.OrderByBirthDate;
 import com.example.verbum.business.control.impl.strategy.OrderByName;
 import com.example.verbum.business.control.strategy.OrderByStrategy;
 import com.example.verbum.business.model.User;
-import com.example.verbum.infra.persistence.UserPersistence;
 import com.example.verbum.infra.utils.Dialog;
+import com.example.verbum.infra.utils.TAG;
 import com.example.verbum.view.adapter.UserItemAdapter;
 import com.tsuryo.swipeablerv.SwipeLeftRightCallback;
 import com.tsuryo.swipeablerv.SwipeableRecyclerView;
@@ -34,6 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
     TextView byUser;
     ImageView pdfButton;
     ImageView imgButton;
+    BaseHandle handle;
 
     ArrayList<User> users;
 
@@ -41,6 +42,8 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        handle = new BaseHandle();
 
         byBirth = (TextView) findViewById(R.id.order_birth);
         byUser = (TextView) findViewById(R.id.order_name);
@@ -122,8 +125,11 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void pdfGenerator(){
         try {
-            controller.createPDF();
+            handle.handleCourier(TAG.PDF_GENERATOR,this);
         } catch (IOException e) {
+            e.printStackTrace();
+            Dialog.showDialog("Falha na criação do PDF","O PDF não pôde ser criado",this);
+        } catch (Exception e) {
             e.printStackTrace();
             Dialog.showDialog("Falha na criação do PDF","O PDF não pôde ser criado",this);
         }
@@ -131,7 +137,10 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void imgGenerator(){
         try {
-            controller.createIMG();
+            handle.handleCourier(TAG.HTML_GENERATOR,this);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Dialog.showDialog("Falha na criação do PDF","O PDF não pôde ser criado",this);
         } catch (Exception e) {
             e.printStackTrace();
             Dialog.showDialog("Falha na criação da página","A página HTML não pôde ser criada",this);

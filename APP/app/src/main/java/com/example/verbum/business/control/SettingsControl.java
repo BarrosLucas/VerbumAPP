@@ -3,10 +3,7 @@ package com.example.verbum.business.control;
 import android.content.Context;
 
 import com.example.verbum.business.model.User;
-import com.example.verbum.business.report.GenerateHTMLReport;
-import com.example.verbum.business.report.GeneratePDFReport;
 import com.example.verbum.infra.persistence.UserPersistence;
-import com.example.verbum.infra.utils.Dialog;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,13 +35,5 @@ public class SettingsControl {
     public boolean updateList(ArrayList<User> users) throws IOException {
         UserPersistence userPersistence = new UserPersistence();
         return userPersistence.save(users,context);
-    }
-
-    public void createPDF() throws IOException {
-        (new GeneratePDFReport(context)).generateFile();
-    }
-
-    public void createIMG() throws Exception {
-        (new GenerateHTMLReport(context)).generateFile();
     }
 }
