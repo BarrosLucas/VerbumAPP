@@ -16,12 +16,12 @@ para ser substituído por outro em tempo de execução.
   3. Quando se precisa ocultar do usuário a exposição das estruturas de dados complexas, específicas do algoritmo;
   4. Quando uma classe define muitos comportamentos e por sua vez eles aparecem como diversos “IFs”. Com isso esses comandos condicionais são movidos para sua própria classe Strategy.
 
-- Lista de classes:
+- Lista de classes: OrderByStrategy.java, OrderByBirthDate.java, OrderByName.java, usados para facilitar as ordenações no Verbum app.
 
 ### Adapter: é um padrão de projeto estrutural que permite objetos com interfaces incompatíveis colaborarem entre si.
-- Objetivo de uso:
-- Aplicabilidade:
-- Lista de classes:
+- Objetivo de uso: O Padrão Adapter é utilizado quando temos uma classe existente cuja interface não é adequada para as suas necessidades. Além disso, o adaptador consegue mudar a interface de um fornecedor para uma interface que o cliente espera encontrar. O Adapter é um padrão que utiliza boas praticas de orientação a objetos e a sua implementação fica mais complexa de acordo com a complexidade da interface do fornecedor.
+- Aplicabilidade: O Padrão Adapter possui diversas boas práticas de programação orientada a objetos como o uso da composição de objetos, vinculação do cliente a uma interface e não a uma implementação e flexibilidade com o uso de diversos adaptadores.
+- Lista de classes: UserItemAdapter.java, usada para realizar uma adptação dos usuários afim de facilitar a ordenação pelo feita pelo padrão Stategy.
 
 ### NOME DO PADRÃO: descrição.
 - Objetivo de uso:
@@ -46,4 +46,5 @@ para ser substituído por outro em tempo de execução.
 ## Referências
 1. https://refactoring.guru/pt-br/design-patterns/strategy
 2. https://www.devmedia.com.br/estudo-e-aplicacao-do-padrao-de-projeto-strategy/25856
-3. 
+3. https://refactoring.guru/pt-br/design-patterns/adapter
+4. https://www.devmedia.com.br/padrao-de-projeto-adapter-em-java/26467
