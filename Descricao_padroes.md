@@ -1,4 +1,4 @@
-# Padrões utilizados
+# Padrões
 
 #### Aqui será realizada a descrição para cada padrão, contendo informações como: nome do padrão, a lista de classes e objetivo de uso do padrão no projeto.
 
@@ -64,6 +64,13 @@ O padrão Strategy ajuda a gerenciar toda essa complexidade imposta pelas lógic
 - Aplicabilidade: Com o padrão Factory Method podemos encapsular o código que cria objetos. evitando assim a duplicação e além disso temos um local único para fazer manutenção. O padrão também nos dá um código flexível e extensível para o futuro.
 
 - Lista de classes: Sex(interface), Man, Woman, SexFactory.
+
+
+## Representação Gráfica
+O diagrama de classes simplificado, com a demonstração das classes sem seus respectivos atributos e métodos, pode auxiliar na compreensão da estruturação e interligação entre os padrões de projeto que foram utilizados: 
+
+![alt text](New_Verbum_Class_Diagram.png)
+
 
 ## Referências
 1. https://refactoring.guru/pt-br/design-patterns/strategy
