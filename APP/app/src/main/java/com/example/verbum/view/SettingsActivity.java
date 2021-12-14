@@ -34,16 +34,12 @@ public class SettingsActivity extends AppCompatActivity {
     TextView byUser;
     ImageView pdfButton;
     ImageView imgButton;
-    BaseHandle handle;
-
     ArrayList<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
-        handle = new BaseHandle();
 
         byBirth = (TextView) findViewById(R.id.order_birth);
         byUser = (TextView) findViewById(R.id.order_name);
@@ -125,7 +121,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void pdfGenerator(){
         try {
-            handle.handleCourier(TAG.PDF_GENERATOR,this);
+            controller.generatePdf();
         } catch (IOException e) {
             e.printStackTrace();
             Dialog.showDialog("Falha na criação do PDF","O PDF não pôde ser criado",this);
@@ -137,10 +133,10 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void imgGenerator(){
         try {
-            handle.handleCourier(TAG.HTML_GENERATOR,this);
+            controller.generateHtml();
         } catch (IOException e) {
             e.printStackTrace();
-            Dialog.showDialog("Falha na criação do PDF","O PDF não pôde ser criado",this);
+            Dialog.showDialog("Falha na criação do PDF","A página HTML não pôde ser criado",this);
         } catch (Exception e) {
             e.printStackTrace();
             Dialog.showDialog("Falha na criação da página","A página HTML não pôde ser criada",this);

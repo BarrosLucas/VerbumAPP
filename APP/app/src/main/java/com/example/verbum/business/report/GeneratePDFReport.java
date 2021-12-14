@@ -110,7 +110,7 @@ public class GeneratePDFReport extends GenerateReports{
     }
 
     public ArrayList<User> getUsers(){
-        UserPersistence userPersistence = new UserPersistence();
+        UserPersistence userPersistence = UserPersistence.getInstance();
         return userPersistence.load(context);
     }
 

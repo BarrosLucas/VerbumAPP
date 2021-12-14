@@ -67,7 +67,7 @@ public class RegisterControl {
     }
 
     private void updateList() throws IOException, ClassNotFoundException {
-        UserPersistence userPersistence = new UserPersistence();
+        UserPersistence userPersistence = UserPersistence.getInstance();
         users = userPersistence.load(context);
         if (users == null) {
             users = new ArrayList<>();
@@ -75,7 +75,7 @@ public class RegisterControl {
     }
 
     private void newUser() throws IOException {
-        UserPersistence userPersistence = new UserPersistence();
+        UserPersistence userPersistence = UserPersistence.getInstance();
         userPersistence.save(users, context);
     }
 }

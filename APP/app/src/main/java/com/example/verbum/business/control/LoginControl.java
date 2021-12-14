@@ -35,7 +35,7 @@ public class LoginControl {
     }
 
     public ArrayList<User> getUsers() throws IOException, ClassNotFoundException {
-        UserPersistence userPersistence = new UserPersistence();
+        UserPersistence userPersistence = UserPersistence.getInstance();
         return userPersistence.load(context);
     }
 
@@ -44,7 +44,7 @@ public class LoginControl {
         for(int i = 0; i < users.size(); i++){
             if(users.get(i).getUsername().equals(user)){
                 users.get(i).setAmountAccess(users.get(i).getAmountAccess()+1);
-                UserPersistence userPersistence = new UserPersistence();
+                UserPersistence userPersistence = UserPersistence.getInstance();
                 userPersistence.save(users,context);
             }
         }

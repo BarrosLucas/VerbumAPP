@@ -22,7 +22,7 @@ public class UserPersistence {
     private final String FILENAME = "persistence.dat";
     private static UserPersistence uniqueInstance;
 
-    public UserPersistence(){
+    private UserPersistence(){
 
     }
     public static synchronized UserPersistence getInstance(){
