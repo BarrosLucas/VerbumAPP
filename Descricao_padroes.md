@@ -1,13 +1,11 @@
-# Neste arquivo será realizada a descrição para cada padrão, contendo informações como: nome do padrão, a lista de classes e objetivo de uso do padrão no projeto.
+# Padrões utilizados
+
+#### Aqui será realizada a descrição para cada padrão, contendo informações como: nome do padrão, a lista de classes e objetivo de uso do padrão no projeto.
 
 ### Strategy ou Policy: é um padrão de projeto comportamental que permite que você defina uma família de algoritmos, coloque-os em classes separadas, e faça os objetos deles intercambiáveis.
 - Objetivo de uso: A lógica condicional é uma das estruturas mais complexas e utilizadas no desenvolvimento de softwares corporativos. 
-Lógicas condicionais tendem a crescer e tornar-se cada vez mais sofisticadas, maiores e mais difíceis de manter com o passar do tempo. 
-O padrão Strategy ajuda a gerenciar toda essa complexidade imposta pelas lógicas condicionais. O Padrão Strategy sugere que se produza uma família de classes para cada variação 
-do algoritmo e que se forneça para a classe hospedeira uma instância de Strategy para a qual ela delegará em tempo de execução. Um dos pré-requisitos para o Strategy é uma 
-estrutura de herança onde cada subclasse específica contém uma variação do algoritmo. Assim, o padrão Strategy possui diversos benefícios como clarificar 
-algoritmos ao diminuir ou remover lógica condicional, simplificar uma classe ao mover variações de um algoritmo para uma hierarquia, e habilitar um algoritmo 
-para ser substituído por outro em tempo de execução.
+Lógicas condicionais tendem a crescer e tornar-se cada vez mais sofisticadas, maiores e mais difíceis de manter com o passar do tempo.  
+O padrão Strategy ajuda a gerenciar toda essa complexidade imposta pelas lógicas condicionais. O Padrão Strategy sugere que se produza uma família de classes para cada variação do algoritmo e que se forneça para a classe hospedeira uma instância de Strategy para a qual ela delegará em tempo de execução. Um dos pré-requisitos para o Strategy é uma estrutura de herança onde cada subclasse específica contém uma variação do algoritmo. Assim, o padrão Strategy possui diversos benefícios como clarificar algoritmos ao diminuir ou remover lógica condicional, simplificar uma classe ao mover variações de um algoritmo para uma hierarquia, e habilitar um algoritmo para ser substituído por outro em tempo de execução.
 
 - Aplicabilidade: Em resumo o padrão Strategy pode ser utilizado quando se tem as seguintes situações:
 
@@ -20,22 +18,29 @@ para ser substituído por outro em tempo de execução.
 
 ### Adapter: é um padrão de projeto estrutural que permite objetos com interfaces incompatíveis colaborarem entre si.
 - Objetivo de uso: O Padrão Adapter é utilizado quando temos uma classe existente cuja interface não é adequada para as suas necessidades. Além disso, o adaptador consegue mudar a interface de um fornecedor para uma interface que o cliente espera encontrar. O Adapter é um padrão que utiliza boas praticas de orientação a objetos e a sua implementação fica mais complexa de acordo com a complexidade da interface do fornecedor.
+
 - Aplicabilidade: O Padrão Adapter possui diversas boas práticas de programação orientada a objetos como o uso da composição de objetos, vinculação do cliente a uma interface e não a uma implementação e flexibilidade com o uso de diversos adaptadores.
+
 - Lista de classes: UserItemAdapter.java, usada para realizar uma adptação dos usuários afim de facilitar a ordenação pelo feita pelo padrão Stategy.
 
 ### Memento: O Memento é um padrão de projeto comportamental que permite que você salve e restaure o estado anterior de um objeto sem revelar os detalhes de sua implementação..
 - Objetivo de uso: Memento é um padrão usado para a criação de um 'histórico' da sua apricação. Ele é usado para salvar o estado de suas entidades. A forma como ele é usado para facilitar o processo, já que nem todas as aplicações que se utilizam de ferramentas de 'históricos' tem o padrão memento. O memento é idealizado com a ideia de as próprias entidades criarem 'prints' de sim mesmo, ao invés de ser nescessária a ação de um terceiro.
+
 - Lista de classes:
 
-### NOME DO PADRÃO: descrição.
-- Objetivo de uso:
-- Aplicabilidade:
-- Lista de classes:
+### Command: O command é um padrao de projeto comportamental que permite encapsular e registrar ações.
+- Objetivo de uso: O objetivo do Command consiste em encapsular ações, evitando, desta forma, que todas essas ações estejam emaranhadas e dependentes entre si, ocasionando códigos robustos e bastante suscetível a erros (por ser demasiadamente amarrado).
 
-### NOME DO PADRÃO: descrição.
-- Objetivo de uso:
-- Aplicabilidade:
-- Lista de classes:
+- Aplicabilidade: O encapsulamento das ações permite, desta forma, parametrizar e até enfileirar as ações, de forma que elas possam ser solicitadas e efetuadas de forma independente, reduzindo a robustes e a dependência entre eles.
+
+- Lista de classes: Command (Interface), Switch, DoLoginCommand e DoRegisterCommand.
+
+### Chair of Responsability: Mais um padrão comportamental, trata de encaminhar uma ação entre vários handlers até que um seja encontrado e encarregador de executar tal ação.
+- Objetivo de uso: Uma sequência de ações adiciona muita ação e pode apresentar falta de segurança e consistência. Adicionalmente observa-se que é muito complicada a adição de novas funcionalidades em um fluxo de ação ou em uma sequência de ações, gerando uma verdadeira bagunça. Para tal, handle trata de encaminhar as ações, separando o fluxo entre handlers e os próprios se responsabilizando por repassar cada evento até encontrar o handle responsável por ela.
+
+- Aplicabilidade: Através deste padrão observa-se que é possível criar uma sequência de ações de forma limpa e segura, além de ser fácil e aplicável criar uma nova ação, onde para tal seria necessária apenas a criação de um novo handle.
+
+- Lista de classes: Handle, HtmlHandle e BaseHandle.
 
 ### NOME DO PADRÃO: descrição.
 - Objetivo de uso:
