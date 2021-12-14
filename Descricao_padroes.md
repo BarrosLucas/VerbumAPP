@@ -42,13 +42,25 @@ O padrão Strategy ajuda a gerenciar toda essa complexidade imposta pelas lógic
 
 - Lista de classes: Handle, HtmlHandle e BaseHandle.
 
-### NOME DO PADRÃO: descrição.
-- Objetivo de uso:
-- Aplicabilidade:
-- Lista de classes:
+### Template Method: é um padrão de projeto comportamental que define o esqueleto de um algoritmo na superclasse mas deixa as subclasses sobrescreverem etapas específicas do algoritmo sem modificar sua estrutura.
+- Objetivo de uso: O padrão do Template Method sugere que você quebre um algoritmo em uma série de etapas, transforme essas etapas em métodos, e coloque uma série de chamadas para esses métodos dentro de um único método padrão. As etapas podem ser tanto abstratas, ou ter alguma implementação padrão. Para usar o algoritmo, o cliente deve fornecer sua própria subclasse, implementar todas as etapas abstratas, e sobrescrever algumas das opcionais se necessário.
+
+- Aplicabilidade: permite que você transforme um algoritmo monolítico em uma série de etapas individuais que podem facilmente ser estendidas por subclasses enquanto ainda mantém intacta a estrutura definida em uma superclasse.
+
+- Lista de classes: GenerateReports, GenerateHTMLReport, GeneratePDFReport
+
+### Factory Method: O padrão Factory Method encapsula a criação de objetos, deixando as subclasses decidirem quais objetos criar.
+- Objetivo de uso: É muito comum termos classes que instanciam classes concretas e essa parte do código normalmente sofre diversas modificações, portanto nesses casos usamos um Factory Method que encapsula esse comportamento de instanciação.
+
+- Aplicabilidade: Com o padrão Factory Method podemos encapsular o código que cria objetos. evitando assim a duplicação e além disso temos um local único para fazer manutenção. O padrão também nos dá um código flexível e extensível para o futuro.
+
+- Lista de classes: Sex(interface), Man, Woman, SexFactory.
 
 ## Referências
 1. https://refactoring.guru/pt-br/design-patterns/strategy
 2. https://www.devmedia.com.br/estudo-e-aplicacao-do-padrao-de-projeto-strategy/25856
 3. https://refactoring.guru/pt-br/design-patterns/adapter
 4. https://www.devmedia.com.br/padrao-de-projeto-adapter-em-java/26467
+5. https://www.devmedia.com.br/padrao-de-projeto-template-method-em-java/26656
+6. https://refactoring.guru/pt-br/design-patterns/template-method
+7. https://www.devmedia.com.br/padrao-de-projeto-factory-method-em-java/26348
