@@ -23,9 +23,8 @@ para ser substituído por outro em tempo de execução.
 - Aplicabilidade: O Padrão Adapter possui diversas boas práticas de programação orientada a objetos como o uso da composição de objetos, vinculação do cliente a uma interface e não a uma implementação e flexibilidade com o uso de diversos adaptadores.
 - Lista de classes: UserItemAdapter.java, usada para realizar uma adptação dos usuários afim de facilitar a ordenação pelo feita pelo padrão Stategy.
 
-### NOME DO PADRÃO: descrição.
-- Objetivo de uso:
-- Aplicabilidade:
+### Memento: O Memento é um padrão de projeto comportamental que permite que você salve e restaure o estado anterior de um objeto sem revelar os detalhes de sua implementação..
+- Objetivo de uso: Memento é um padrão usado para a criação de um 'histórico' da sua apricação. Ele é usado para salvar o estado de suas entidades. A forma como ele é usado para facilitar o processo, já que nem todas as aplicações que se utilizam de ferramentas de 'históricos' tem o padrão memento. O memento é idealizado com a ideia de as próprias entidades criarem 'prints' de sim mesmo, ao invés de ser nescessária a ação de um terceiro.
 - Lista de classes:
 
 ### NOME DO PADRÃO: descrição.
