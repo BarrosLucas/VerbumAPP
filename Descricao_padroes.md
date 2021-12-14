@@ -23,10 +23,19 @@ O padrão Strategy ajuda a gerenciar toda essa complexidade imposta pelas lógic
 
 - Lista de classes: UserItemAdapter.java, usada para realizar uma adptação dos usuários afim de facilitar a ordenação pelo feita pelo padrão Stategy.
 
-### Memento: O Memento é um padrão de projeto comportamental que permite que você salve e restaure o estado anterior de um objeto sem revelar os detalhes de sua implementação..
-- Objetivo de uso: Memento é um padrão usado para a criação de um 'histórico' da sua apricação. Ele é usado para salvar o estado de suas entidades. A forma como ele é usado para facilitar o processo, já que nem todas as aplicações que se utilizam de ferramentas de 'históricos' tem o padrão memento. O memento é idealizado com a ideia de as próprias entidades criarem 'prints' de sim mesmo, ao invés de ser nescessária a ação de um terceiro.
+### Memento: O Memento é um padrão de projeto comportamental que permite que você salve e restaure o estado anterior de um objeto sem revelar os detalhes de sua implementação.
+- Objetivo de uso: Memento é um padrão usado para a criação de um 'histórico' da sua apricação. Ele é usado para salvar o estado de suas entidades. A forma como ele é usado para facilitar o processo, já que nem todas as aplicações que se utilizam de ferramentas de 'históricos' tem o padrão memento. O memento é idealizado com a ideia de as próprias entidades criarem 'prints' de si mesmo, ao invés de ser nescessária a ação de um terceiro.
 
-- Lista de classes:
+- Aplicabilidade: Como as ações de 'print' e restore são feitos pela própria entidade que será feito esse dados, isso permite que o sistema não tenha falhas de segurança no acesso a classe. Já que todos os dados estarão devidamente encapsulados.
+
+- Lista de classes: UserCareTaker, UserPersistence.
+
+### Facade: O Padrão de projeto Facade (ou Fachada) é um padrão de design de software usado comumente com programação orientada a objetos. Este nome é uma analogia para uma fachada arquitetural. Um Facade é um objeto que provê uma interface simplificada para um corpo de código maior, como por exemplo, uma biblioteca de classes.
+- Objetivo de uso: O Padrão Facade é do tipo estrutural. É usado quando um sistema é muito complexo ou difícil de entender, já que possui um grande número de classes independentes ou se trechos de código fonte estão indisponíveis.  
+
+- Aplicabilidade: Este padrão esconde as complexidades de um sistema maior e provê uma interface simplificada ao cliente.
+
+- Lista de classes: UserFacade, LoginControl, RegisterControl.
 
 ### Command: O command é um padrao de projeto comportamental que permite encapsular e registrar ações.
 - Objetivo de uso: O objetivo do Command consiste em encapsular ações, evitando, desta forma, que todas essas ações estejam emaranhadas e dependentes entre si, ocasionando códigos robustos e bastante suscetível a erros (por ser demasiadamente amarrado).
